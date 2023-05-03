@@ -2,6 +2,7 @@ package br.com.gcwinter.crud.controller;
 
 import br.com.gcwinter.crud.controller.dto.UserDto;
 import br.com.gcwinter.crud.service.UserService;
+import br.com.gcwinter.crud.service.model.Address;
 import br.com.gcwinter.crud.service.model.Sex;
 import br.com.gcwinter.crud.service.model.User;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,8 @@ public class UserController {
                 userDto.getName(),
                 userDto.getEmail(),
                 userDto.getPhone(),
-                Sex.fromString(userDto.getSex())
+                Sex.fromString(userDto.getSex()),
+                Address.builder().cep(userDto.getCep()).numero(userDto.getNumero()).build()
         );
         userService.create(user);
     }
@@ -35,7 +37,10 @@ public class UserController {
                 user.getName(),
                 user.getEmail(),
                 user.getPhone(),
-                user.getSex().name()
+                user.getSex().name(),
+                user.getAddress().getCep(),
+                user.getAddress().toString(),
+                user.getAddress().getNumero()
         )).toList();
     }
 
@@ -47,7 +52,10 @@ public class UserController {
                 user.getName(),
                 user.getEmail(),
                 user.getPhone(),
-                user.getSex().name()
+                user.getSex().name(),
+                user.getAddress().getCep(),
+                user.getAddress().toString(),
+                user.getAddress().getNumero()
         )).get();
     }
 
@@ -65,7 +73,9 @@ public class UserController {
                 userDto.getName(),
                 userDto.getEmail(),
                 userDto.getPhone(),
-                Sex.fromString(userDto.getSex())
+                Sex.fromString(userDto.getSex()),
+                Address.builder().cep(userDto.getCep()).numero(userDto.getNumero()).build()
+
         );
 
 
